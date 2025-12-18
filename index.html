@@ -32,10 +32,15 @@
 <meta name="twitter:description" content="Learn how Inat TV APK helps Android users stream free movies & football matches without payment.">
 <meta name="twitter:image" content="https://safetouse.netlify.app/inatbox.webp">
 
+<meta name="geo.region" content="US">
+  <meta name="geo.placename" content="United States">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
 <!-- Backend Indexing Fields -->
 <meta name="page-type" content="article">
 <meta name="page-id" content="inat-tv-001">
-<meta name="last-modified" content="2025-12-18">
+<meta name="last-modified" content="2025-12-19">
+<meta name="priority" content="high">
 
 <!-- Article Schema -->
 <script type="application/ld+json">
@@ -215,19 +220,29 @@ p {
 
 </div>
 <script>
-window.addEventListener("load", () => {
-  try {
-    const pageData = {
-      url: location.href,
-      title: document.title,
-      timestamp: new Date().toISOString()
-    };
-    console.log("Page indexed:", pageData);
-  } catch(e) {
-    console.warn("Indexing script skipped.");
-  }
-});
-</script>
+    // Send page data to backend for indexing
+    window.addEventListener('load', function() {
+      const pageData = {
+        url: window.location.href,
+        title: document.title,
+        description: document.querySelector('meta[name="description"]').content,
+        keywords: document.querySelector('meta[name="keywords"]').content,
+        pageType: document.querySelector('meta[name="page-type"]').content,
+        pageId: document.querySelector('meta[name="page-id"]').content,
+        lastModified: document.querySelector('meta[name="last-modified"]').content,
+        timestamp: new Date().toISOString()
+      };
+      
+      // Send to your backend API endpoint
+      // fetch('/api/index-page', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(pageData)
+      // });
+      
+      console.log('Page indexed:', pageData);
+    });
+  </script>
 
 </body>
 </html>
